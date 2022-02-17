@@ -5,7 +5,12 @@ public class Coin : MonoBehaviour {
         var playerMovement = other.GetComponent<PlayerMovement>();
         if (playerMovement == null) return;
         
-        Debug.Log("Coin was collected");
+        var coinCounter = other.GetComponent<Counter>();
+        if (coinCounter == null) return;
+
+        coinCounter.Increment();
+
+        Debug.LogFormat("Coin was collected, total count = {0}", coinCounter.GetCount());
         Destroy(gameObject);
     }
 }
